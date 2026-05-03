@@ -1,4 +1,7 @@
 import streamlit as st
+import datetime 
+import pandas as pd
+
 
 class Subject:
   def __init__(self,name,room,teacher,syllabus):
@@ -13,6 +16,25 @@ class Subject:
     st.write(f"🧑‍🏫先生:{self.teacher}")
 
 
+def get_current_period():
+  now = datetime.datetime.now()
+  #日本時間に合わせるため、調整
+  current_time = now.hour * 100 + now.minute
+  if 915 <= current_time <= 1005:
+    return "1限"
+  elif 1015 <= current_time <= 1105:
+    return "2限"
+  elif 1115 <= current_time <= 1205:
+    return "3限"
+  elif 1250 <= current_time <= 1340:
+    return "4限"
+  elif 1350 <= current_time <= 1440:
+    return "5限"
+  elif 1450 <= current_time <= 1540:
+    return "6限"
+  else:
+    "休み時・課外時間"
+    
 #授業の下準備
 math_a = Subject("数学α","HR教室","大石先生","一次関数")
 math_b = Subject("数学β","HR教室","先生","いろいろな四角形")
@@ -30,6 +52,7 @@ pe = Subject("体育","グラウンド","原先生","ハードル")
 home_economics = Subject("家庭科","家庭科室","山本（通）先生","調理実習")
 moral = Subject("道徳","HR教室","担任","？")
 LHR = Subject("LHR","HR教室","担任","？")
+
 #辞書に打ち込む
 #月曜
 monday_timetable = {
@@ -93,11 +116,18 @@ all_timetables = {
 }
 
 #入力欄を st.selectbox に変える。校時の選択。
-st.title("デジタル時間割")
+st.title("デジタル時間割🚀")
+＃現在の授業を表示
+current_period = get_current_period()
+st.info(f"🕰️現在の時刻による判定:{current_period}")
+
 #曜日の選択、初期化。
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
+default_index = 0
+if "限" in current_period:
+  default_index = int(current_period.replace("限","")) - 1
 #校時の選択
-x = st.radio("何限の授業を見ますか？",["1","2","3","4","5","6"], horizontal=True)
+x = st.radio("何限の授業を見ますか？",["1","2","3","4","5","6"],index=default_index, horizontal=True)
 key = f"{x}限"
 
 #表示する。
