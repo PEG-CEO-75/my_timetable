@@ -120,11 +120,11 @@ all_timetables = {
 
 #---授業の開始時間を定義---    
 start_times = {
-  "1限":datetime.time(9,15)
-  "2限":datetime.time(10,15)
-  "3限":datetime.time(11,15)
-  "4限":datetime.time(12,50)
-  "5限":datetime.time(13,50)
+  "1限":datetime.time(9,15),
+  "2限":datetime.time(10,15),
+  "3限":datetime.time(11,15),
+  "4限":datetime.time(12,50),
+  "5限":datetime.time(13,50),
   "6限":datetime.time(14,50)
 }  
 
