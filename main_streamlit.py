@@ -33,7 +33,7 @@ def get_current_period():
   elif 1450 <= current_time <= 1540:
     return "6限"
   else:
-    "休み時・課外時間"
+    return "休み時・課外時間"
     
 #授業の下準備
 math_a = Subject("数学α","HR教室","大石先生","一次関数")
@@ -118,6 +118,8 @@ all_timetables = {
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割🚀")
 #現在の授業を表示
+if current_period is None:
+  current_period = "判定外"
 current_period = get_current_period()
 st.info(f"🕰️現在の時刻による判定:{current_period}")
 
