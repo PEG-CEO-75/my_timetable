@@ -94,17 +94,19 @@ all_timetables = {
 st.title("デジタル時間割")
 #曜日の選択、初期化。
 day = 1
-day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
+day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"]）
 #校時の選択
 x = st.radio("何限の授業を見ますか？",["1","2","3","4","5","6"], horizontal=True)
-selected_day_dict = all_timetables[day]
 key = f"{x}限"
 
 #表示する。
-if key in selected_day_dict :
-  subject = selected_day_dict[key]
-  subject.show_summary()
-else:
+if day: #曜日が選択されているときだけ、曜日の時間割の辞書を呼び出し、表示する。
+  selected_day_dict = all_timetables[day]
+  if key in selected_day_dict:
+    subject = selected_day_dict[key]
+    subject.show_summary()
+  else:
    st.error("その授業はありません。")#エラーを赤く出す
-    
+else: #もし選ばれていなければ、選択するように表示する。
+  st.write("上から曜日を選んでください。"）
 
