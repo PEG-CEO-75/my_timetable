@@ -154,7 +154,7 @@ timetable_rows = []
 for p in ["1限","2限","3限","4限","5限","6限"]:
   row = {"校時":p}
   for d_name, d_dict in all_timetables.item():
-    row[d_name] = d_dict[p],name if p in d_dict else "-"
+    row[d_name] = d_dict[p].name if p in d_dict else "-"
   timetable_rows.append(row)
 
 df = pd.DataFrame(timetable_rows)
