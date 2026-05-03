@@ -1,6 +1,7 @@
 import streamlit as st
 import datetime 
 import pandas as pd
+import time
 
 
 class Subject:
@@ -34,8 +35,9 @@ def get_current_period():
     return "6限"
   else:
     return "休み時間・課外時間"
-    
-#授業の下準備
+
+
+#---授業の下準備---
 math_a = Subject("数学α","HR教室","大石先生","一次関数")
 math_b = Subject("数学β","HR教室","先生","いろいろな四角形")
 social = Subject("社会","HR教室","矢子先生","中国の歴史")
@@ -53,7 +55,8 @@ home_economics = Subject("家庭科","家庭科室","山本（通）先生","調
 moral = Subject("道徳","HR教室","担任","？")
 LHR = Subject("LHR","HR教室","担任","？")
 
-#辞書に打ち込む
+
+#---辞書に打ち込む---
 #月曜
 monday_timetable = {
     "1限": math_a,
@@ -115,6 +118,16 @@ all_timetables = {
   "土": saturday_timetable
 }
 
+#---授業の開始時間を定義---    
+start_times = {
+  "1限":datetime.time(9,15)
+  "2限":datetime.time(10,15)
+  "3限":datetime.time(11,15)
+  "4限":datetime.time(12,50)
+  "5限":datetime.time(13,50)
+  "6限":datetime.time(14,50)
+}  
+
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割🚀")
 #現在の校時を表示
@@ -123,6 +136,17 @@ st.info(f"🕰️現在の時刻による判定:{current_period}")
 #デバッグ用時刻表示
 st.write(f"デバッグ用:現在のサーバー内日本時間:{datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime('%H:%M')}")
 
+countdown_placeholder = st.empty()
+if "限" in current_period:
+  target_time = start_times.get(curent_period)
+#日本時間の現在時刻を取得
+now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+if current_period == "1限":
+  end_time = now_jst.replace(hours=10,minute=5,second=0)
+  remaining = end_time - now.jst
+  mins,secs = divmod(remaining.seconds,60)
+  st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
+  
 #曜日の選択、初期化。
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
 default_index = 0
