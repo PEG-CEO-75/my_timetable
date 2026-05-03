@@ -117,7 +117,7 @@ all_timetables = {
 
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割🚀")
-＃現在の授業を表示
+#現在の授業を表示
 current_period = get_current_period()
 st.info(f"🕰️現在の時刻による判定:{current_period}")
 
