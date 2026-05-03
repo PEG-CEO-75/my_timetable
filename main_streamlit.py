@@ -157,5 +157,5 @@ for p in ["1限","2限","3限","4限","5限","6限"]:
     row[d_name] = d_dict[p],name if p in d_dict else "-"
   timetable_rows.append(row)
 
-df = pd.DataFrame(timetable rows)
+df = pd.DataFrame(timetable_rows)
 st.table(df)
