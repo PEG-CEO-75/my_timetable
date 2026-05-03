@@ -103,7 +103,7 @@ key = f"{x}限"
 if key in selected_day_dict :
   subject = selected_day_dict[key]
   subject.show_summary()
-  else:
+else:
    st.error("その授業はありません。")#エラーを赤く出す
     
 
