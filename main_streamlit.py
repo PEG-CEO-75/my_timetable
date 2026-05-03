@@ -94,7 +94,7 @@ all_timetables = {
 st.title("デジタル時間割")
 #曜日の選択、初期化。
 day = 1
-day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"]）
+day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
 #校時の選択
 x = st.radio("何限の授業を見ますか？",["1","2","3","4","5","6"], horizontal=True)
 key = f"{x}限"
