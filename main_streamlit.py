@@ -21,12 +21,15 @@ monday_timetable = {
     "2限": social,
     "3限": japanese_b,
 }
+
 #入力欄を st.selectbox に変える
 st.title("デジタル時間割")
-x = st.selectbox("何限の授業を見ますか？", ["1","2","3"])
+x = st.selectbox("何限の授業を見ますか？", ["1","2","3","安倍晋三"])
 
 if f"{x}限"in monday_timetable:
   monday_timetable[f"{x}限"].show_summary()
+elif x == "安倍晋三":
+  st.write("紫雲院殿政譽清浄晋寿大居士")
 else:
   st.error("その授業はありません。")#エラーを赤く出す
 
