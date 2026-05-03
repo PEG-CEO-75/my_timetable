@@ -79,18 +79,30 @@ saturday_timetable = {
     "1限":pe,
     "2限":japanese_a,
     "3限":math_b,
-}       
+}  
+#辞書に曜日と時間割を結びつける
+all_timetables = {
+  "月": monday_timetable,
+  "火": tuesday_timetable,
+  "水": wednesday_timetable,
+  "木": thursday_timetable,
+  "金": friday_timetable,
+  "土": saturday_timetable
+}
+
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割")
 #曜日の選択
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
 #校時の選択
 x = st.radio("何限の授業を見ますか？",["1","2","3","4","5","6"], horizontal=True)
+selected_day_dict = all_timetables[day]
+key = f"{x}限"
 
 #表示する。
-if day == "月":
-  if f"{x}限"in monday_timetable:
-   monday_timetable[f"{x}限"].show_summary()
+if key in selected_day_dict :
+  subject = selected_day_dict[key]
+  subject.show_summary()
   else:
    st.error("その授業はありません。")#エラーを赤く出す
     
