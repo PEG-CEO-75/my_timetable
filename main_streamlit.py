@@ -33,7 +33,7 @@ def get_current_period():
   elif 1450 <= current_time <= 1540:
     return "6限"
   else:
-    return "休み時・課外時間"
+    return "休み時間・課外時間"
     
 #授業の下準備
 math_a = Subject("数学α","HR教室","大石先生","一次関数")
@@ -126,7 +126,10 @@ st.info(f"🕰️現在の時刻による判定:{current_period}")
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
 default_index = 0
 if "限" in current_period:
-  default_index = int(current_period.replace("限","")) - 1
+  try:
+    default_index = int(current_period.replace("限","")) - 1
+  except:
+    default_index = 0
 #校時の選択
 x = st.radio("何限の授業を見ますか？",["1","2","3","4","5","6"],index=default_index, horizontal=True)
 key = f"{x}限"
