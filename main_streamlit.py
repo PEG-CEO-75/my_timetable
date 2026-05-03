@@ -25,6 +25,7 @@ monday_timetable = {
 #入力欄を st.selectbox に変える
 st.title("デジタル時間割")
 x = st.radio("何限の授業を見ますか？",["1","2","3"], horizontal=True)
+x = st.pills("校時を選択",["1","2","3"])
 
 if f"{x}限"in monday_timetable:
   monday_timetable[f"{x}限"].show_summary()
