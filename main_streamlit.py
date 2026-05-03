@@ -22,7 +22,7 @@ monday_timetable = {
     "3限": japanese_b,
 }
 #曜日の選択
-day = st.segmented_control("曜日を選択", "月","火","水","木","金","土")
+day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
 
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割")
