@@ -28,7 +28,7 @@ day = st.segmented_control("曜日を選択", "月","火","水","木","金","土
 st.title("デジタル時間割")
 x = st.radio("何限の授業を見ますか？",["1","2","3"], horizontal=True)
 
-＃表示する。
+#表示する。
 if day == "月":
   if f"{x}限"in monday_timetable:
   monday_timetable[f"{x}限"].show_summary()
