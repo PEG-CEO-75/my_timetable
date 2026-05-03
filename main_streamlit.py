@@ -31,9 +31,10 @@ x = st.radio("何限の授業を見ますか？",["1","2","3"], horizontal=True)
 #表示する。
 if day == "月":
   if f"{x}限"in monday_timetable:
-  monday_timetable[f"{x}限"].show_summary()
+   monday_timetable[f"{x}限"].show_summary()
   elif x == "安倍晋三":
-  st.write("紫雲院殿政譽清浄晋寿大居士")
+   st.write("紫雲院殿政譽清浄晋寿大居士")
   else:
-  st.error("その授業はありません。")#エラーを赤く出す
+   st.error("その授業はありません。")#エラーを赤く出す
+    
 
