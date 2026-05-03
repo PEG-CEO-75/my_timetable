@@ -17,7 +17,7 @@ class Subject:
 
 
 def get_current_period():
-  now = datetime.datetime.now()
+  now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
   #日本時間に合わせるため、調整
   current_time = now.hour * 100 + now.minute
   if 915 <= current_time <= 1005:
@@ -117,10 +117,11 @@ all_timetables = {
 
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割🚀")
-#現在の授業を表示
-
+#現在の校時を表示
 current_period = get_current_period()
 st.info(f"🕰️現在の時刻による判定:{current_period}")
+#デバッグ用時刻表示
+st.write(f"デバッグ用:現在のサーバー内日本時間:{datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime('%H:%M')}")
 
 #曜日の選択、初期化。
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
