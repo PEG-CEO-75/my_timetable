@@ -165,7 +165,7 @@ if now_for_calc in end_times:
     st.metric(label=f"{current_period}終了まで",value=f"{mins}分 {secs}秒")
   else:
     st.write(f"{current_period}は終了しています")
-elif current_period == "休み時間・放課後":
+elif current_period == "休み時間・課外時間":
   st.write("🍵現在は休み時間または放課後です。ゆっくりしてください！")
 
   
