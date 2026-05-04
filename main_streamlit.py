@@ -68,11 +68,7 @@ now_for_calc = today.replace(hour=9,minute=30,second=0)
 # end_times は const.py にあるので、const. をつける
 if current_period in const.end_times:
   target_time_data = const.end_times[current_period]
-  end_time = today.replace(
-    target_time_data.hour,
-    target_time_data.minute,
-    second=0
-  )
+  end_time = today.replace(hour=target_time_data.hour,minute=target_time_data.minute,second=0)
   remaining = end_time - now_for_calc
   if remaining.total_seconds() > 0:
     mins,secs = divmod(int(remaining.total_seconds()), 60)
