@@ -63,6 +63,17 @@ if now_for_calc in const.end_times:
     st.metric(label=f"{current_period}終了まで",value=f"{mins}分 {secs}秒")
   else:
     st.write(f"{current_period}は終了しています")
+  try:
+    current_num = int(current_period.replace("限",""))
+    next_period = f"{current_num + 1}限"
+    
+    if next_period in serected_day_dict:
+      next_subject = serected_day_dict[next_period]
+      st.write(f"**次の授業:**"{next_subject.name} ({next_subject_room}))
+    else:
+      st.write("**次の授業:**今日の授業はこれで終了です!")
+  except:
+    pass
 elif current_period == "休み時間・課外時間":
   st.write("🍵現在は休み時間または放課後です。ゆっくりしてください！")
     
