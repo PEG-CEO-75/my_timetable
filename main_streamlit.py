@@ -82,8 +82,8 @@ if current_period in const.end_times:
       current_num = int(current_period.replace("限",""))
     next_period = f"{current_num + 1}限"
     
-    if next_period in serected_day_dict:
-      next_subject = serected_day_dict[next_period]
+    if next_period in selected_day_dict:
+      next_subject = selected_day_dict[next_period]
       st.write(f"**次の授業:**{next_subject.name} ({next_subject.room})")
     else:
       st.write("**次の授業:**今日の授業はこれで終了です!")
