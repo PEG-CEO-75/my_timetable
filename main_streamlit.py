@@ -17,10 +17,17 @@ class Subject:
     st.write(f"🧑‍🏫先生:{self.teacher}")
 
 
-def get_current_period():
-  now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+def get_current_period():  #デバッグのため、本番用コードをコメントアウトする。
+  #---コメントアウト
+  #now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+  
   #日本時間に合わせるため、調整
-  current_time = now.hour * 100 + now.minute
+  #---デバッグ用↓(9時30分に設定)
+  test_now = datetime.time(9,30)
+  current_time = test_now.hour * 100 + test_now.minute
+  
+  #---コメントアウト
+  #current_time = now.hour * 100 + now.minute
   if 915 <= current_time <= 1005:
     return "1限"
   elif 1015 <= current_time <= 1105:
