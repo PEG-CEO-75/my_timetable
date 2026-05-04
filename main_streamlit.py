@@ -18,7 +18,7 @@ class Subject:
 
 
 def get_current_period(): 
-  now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=
+  now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
   current_time = now.hour * 100 + now.minute
   if 915 <= current_time <= 1005:
     return "1限"
