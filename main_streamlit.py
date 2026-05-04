@@ -145,7 +145,7 @@ st.write(f"デバッグ用:現在のサーバー内日本時間:{datetime.dateti
 
 countdown_placeholder = st.empty()
 if "限" in current_period:
-  target_time = start_times.get(curent_period)
+  target_time = start_times.get(current_period)
 #日本時間の現在時刻を取得
 now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 if current_period == "1限":
