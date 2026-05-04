@@ -207,3 +207,7 @@ for p in ["1限","2限","3限","4限","5限","6限"]:
 
 df = pd.DataFrame(timetable_rows)
 st.table(df)
+
+#自動でサイトをリフレッシュ
+time.sleep(10)
+st.rerun()
