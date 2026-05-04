@@ -58,6 +58,7 @@ now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 #カウントダウン用。
 today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 now_for_calc = today #本番ではtodayに戻す
+#デバッグ用。
 
 # end_times は const.py にあるので、const. をつける
 if now_for_calc in const.end_times:
