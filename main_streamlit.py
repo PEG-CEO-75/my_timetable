@@ -13,7 +13,7 @@ def get_current_period():
   #current_time = now.hour * 100 + now.minute
   
   #デバッグ用。
-  test_now = datetime.time(9,30)
+  test_now = datetime.time(10,6)
   current_time = test_now.hour * 100 + test_now.minute
   
   if 915 <= current_time <= 1005:
@@ -64,7 +64,7 @@ now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 #now_for_calc = today #本番ではtodayに戻す
 #デバッグ用。
-now_for_calc = today.replace(hour=9,minute=30,second=0)
+now_for_calc = today.replace(hour=10,minute=6,second=0)
 # end_times は const.py にあるので、const. をつける
 if current_period in const.end_times:
   target_time_data = const.end_times[current_period]
