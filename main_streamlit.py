@@ -150,7 +150,7 @@ if "限" in current_period:
 #日本時間の現在時刻を取得
 now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-now_for_calc = today.replace(hour=9, minute=30, second=0) #本番ではtodayに戻す
+now_for_calc = today #本番ではtodayに戻す
 
 if now_for_calc in end_times:
   target_time_data = end_times[current_period]
