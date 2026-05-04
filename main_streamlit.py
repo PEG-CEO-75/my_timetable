@@ -13,14 +13,24 @@ def get_current_period():
   current_time = now.hour * 100 + now.minute
   if 915 <= current_time <= 1005:
     return "1限"
+  elif 1006 <= current_time <= 1014:
+    return "2限前"
   elif 1015 <= current_time <= 1105:
     return "2限"
+  elif 1106 <= current_time <= 1114:
+    return "3限前"
   elif 1115 <= current_time <= 1205:
     return "3限"
+  elif 1206 <= current_time <= 1249:
+    return "4限前"  
   elif 1250 <= current_time <= 1340:
     return "4限"
+  elif 1341 <= current_time <= 1349:
+    return "5限前"  
   elif 1350 <= current_time <= 1440:
     return "5限"
+  elif 1441 <= current_time <= 1449:
+    return "6限前"  
   elif 1450 <= current_time <= 1540:
     return "6限"
   else:
@@ -64,12 +74,15 @@ if now_for_calc in const.end_times:
   else:
     st.write(f"{current_period}は終了しています")
   try:
-    current_num = int(current_period.replace("限",""))
+    if "前" in current_period:
+      current_num = int(current_period.replace("限","").replace("前","")) - 1
+    else:
+      current_num = int(current_period.replace("限",""))
     next_period = f"{current_num + 1}限"
     
     if next_period in serected_day_dict:
       next_subject = serected_day_dict[next_period]
-      st.write(f"**次の授業:**{next_subject.name} ({next_subject_room})")
+      st.write(f"**次の授業:**{next_subject.name} ({next_subject.room})")
     else:
       st.write("**次の授業:**今日の授業はこれで終了です!")
   except:
