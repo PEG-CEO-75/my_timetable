@@ -148,19 +148,22 @@ if "限" in current_period:
   target_time = start_times.get(current_period)
 #日本時間の現在時刻を取得
 now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+now_for_calc = today.replace(hour=9, minute=30, second=0)
 if current_period == "1限":
-  end_time = test_now.replace(hour=10,minute=5,second=0)
-  remaining = end_time - test_now
+  end_time = today.replace(hour=10,minute=5,second=0)
+  remaining = end_time - now_for_calc
   #end_time = now_jst.replace(hour=10,minute=5,second=0)
   #remaining = end_time - now_jst
   #mins,secs = divmod(remaining.seconds,60)
   #st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
 #残り時間がプラスの時だけ表示
 if remaining.total_seconds() > 0:
-  mins,secs = divmod(remaining.seconds,60)
+  mins,secs = divmod(int(remaining.total_seconds()), 60)
   st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
 else:
  st.write("授業は終了しています")
+  
 #曜日の選択、初期化。
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
 default_index = 0
