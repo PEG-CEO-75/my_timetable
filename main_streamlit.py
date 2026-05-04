@@ -4,6 +4,8 @@ import pandas as pd
 import time
 
 
+
+#ファイル分割前！！！
 class Subject:
   def __init__(self,name,room,teacher,syllabus):
     self.name = name #授業名
