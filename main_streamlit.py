@@ -134,6 +134,15 @@ start_times = {
   "5限":datetime.time(13,50),
   "6限":datetime.time(14,50)
 }  
+#---授業の終了時間を定義---
+end_times = {
+    "1限": datetime.time(10, 5),
+    "2限": datetime.time(11, 5),
+    "3限": datetime.time(12, 5),
+    "4限": datetime.time(13, 40),
+    "5限": datetime.time(14, 40),
+    "6限": datetime.time(15, 40)
+}
 
 #入力欄を st.selectbox に変える。校時の選択。
 st.title("デジタル時間割🚀")
@@ -149,24 +158,26 @@ if "限" in current_period:
 #日本時間の現在時刻を取得
 now_jst = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
 today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-now_for_calc = today.replace(hour=10, minute=30, second=0)
-if current_period == "1限":
-  end_time = today.replace(hour=10,minute=5,second=0)
-  remaining = end_time - now_for_calc
-  #end_time = now_jst.replace(hour=10,minute=5,second=0)
-  #remaining = end_time - now_jst
-  #mins,secs = divmod(remaining.seconds,60)
-  #st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
-if current_period == "2限":
-  end_time = today.replace(hour=11,minute=5,second=0)
-  remaining = end_time - now_for_calc
+now_for_calc = today.replace(hour=9, minute=30, second=0) #本番ではtodayに戻す
+
+if now_for_calc in end_times:
+  target_time_data = end_times[current_period]
+  end_time = today.replace(
+    target_time_data.hour,
+    target_time_data.minute,
+    second=0
+  )
+  ramining = end_time - now_for_calc
+  if remaining.total_seconds() > 0:
+    mins,secs = divmod(int(remaining.total_seconds()), 60)
+    st.metric(label=f"{current_period}終了まで",value=f"{mins}分 {secs}秒")
+  else:
+    st.write(f"{current_period}は終了しています")
+elif current_period == "休み時間・放課後":
+  st.write("🍵現在は休み時間または放課後です。ゆっくりしてください！")
+
   
-#残り時間がプラスの時だけ表示
-if remaining.total_seconds() > 0:
-  mins,secs = divmod(int(remaining.total_seconds()), 60)
-  st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
-else:
- st.write("授業は終了しています")
+
   
 #曜日の選択、初期化。
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
