@@ -105,9 +105,14 @@ start_times = {
 #---授業の終了時間を定義---
 end_times = {
     "1限": datetime.time(10, 5),
+    "2限前": datetime.time(10, 14),
     "2限": datetime.time(11, 5),
+    "3限前": datetime.time(11, 14),
     "3限": datetime.time(12, 5),
+    "4限前": datetime.time(12, 49),
     "4限": datetime.time(13, 40),
+    "5限前": datetime.time(13, 49),
     "5限": datetime.time(14, 40),
+    "6限前": datetime.time(14, 49),
     "6限": datetime.time(15, 40)
 }
