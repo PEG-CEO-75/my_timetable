@@ -73,7 +73,7 @@ if now_for_calc in const.end_times:
     target_time_data.minute,
     second=0
   )
-  ramining = end_time - now_for_calc
+  remaining = end_time - now_for_calc
   if remaining.total_seconds() > 0:
     mins,secs = divmod(int(remaining.total_seconds()), 60)
     st.metric(label=f"{current_period}終了まで",value=f"{mins}分 {secs}秒")
