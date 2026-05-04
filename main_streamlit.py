@@ -154,7 +154,7 @@ if current_period == "1限":
   #mins,secs = divmod(remaining.seconds,60)
   #st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
 #残り時間がプラスの時だけ表示
-if remaining.total_seconds() > 0
+if remaining.total_seconds() > 0:
   mins,secs = divmod(remaining.seconds,60)
   st.metric(label="1限終了まで",value=f"{mins}分 {secs}秒")
 else:
