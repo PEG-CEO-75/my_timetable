@@ -5,6 +5,7 @@ import time
 import const
 
 
+
 #ファイル分割後。↓class
 
 #---------
