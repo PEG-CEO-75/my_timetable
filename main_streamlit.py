@@ -66,38 +66,7 @@ now_for_calc = today #本番ではtodayに戻す
 #下はデバッグ用。コメントアウト済み。
 #now_for_calc = today.replace(hour=10,minute=6,second=0)
 # end_times は const.py にあるので、const. をつける
-if current_period in const.end_times:
-  target_time_data = const.end_times[current_period]
-  end_time = today.replace(hour=target_time_data.hour,minute=target_time_data.minute,second=0)
-  while True:
-    now_now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    remaining = end_time - now_now
-    if remaining.total_seconds() > 0:
-      mins,secs = divmod(int(remaining.total_seconds()), 60)
-      countdown_placeholder.metric(
-        label=f"{current_period}終了まで",
-        value=f"{mins}分{secs}秒"
-      )
-      time.sleep(1)
-    else:
-      countdown_placeholder.write(f"✅{current_period}が終了しました！")
-      break
-  try:
-    if "前" in current_period:
-      current_num = int(current_period.replace("限","").replace("前","")) - 1
-    else:
-      current_num = int(current_period.replace("限",""))
-    next_period = f"{current_num + 1}限"
-    
-    if next_period in selected_day_dict:
-      next_subject = selected_day_dict[next_period]
-      st.write(f"**次の授業:**{next_subject.name} ({next_subject.room})")
-    else:
-      st.write("**次の授業:**今日の授業はこれで終了です!")
-  except:
-    pass
-elif current_period == "休み時間・課外時間":
-  st.write("🍵現在は休み時間または放課後です。ゆっくりしてください！")
+
     
 #曜日の選択、初期化。
 day = st.segmented_control("曜日を選択", ["月","火","水","木","金","土"])
@@ -135,6 +104,39 @@ for p in ["1限","2限","3限","4限","5限","6限"]:
 
 df = pd.DataFrame(timetable_rows)
 st.table(df)
+
+if current_period in const.end_times:
+  target_time_data = const.end_times[current_period]
+  end_time = today.replace(hour=target_time_data.hour,minute=target_time_data.minute,second=0)
+  while True:
+    now_now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    remaining = end_time - now_now
+    if remaining.total_seconds() > 0:
+      mins,secs = divmod(int(remaining.total_seconds()), 60)
+      countdown_placeholder.metric(
+        label=f"{current_period}終了まで",
+        value=f"{mins}分{secs}秒"
+      )
+      time.sleep(1)
+    else:
+      countdown_placeholder.write(f"✅{current_period}が終了しました！")
+      break
+  try:
+    if "前" in current_period:
+      current_num = int(current_period.replace("限","").replace("前","")) - 1
+    else:
+      current_num = int(current_period.replace("限",""))
+    next_period = f"{current_num + 1}限"
+    
+    if next_period in selected_day_dict:
+      next_subject = selected_day_dict[next_period]
+      st.write(f"**次の授業:**{next_subject.name} ({next_subject.room})")
+    else:
+      st.write("**次の授業:**今日の授業はこれで終了です!")
+  except:
+    pass
+elif current_period == "休み時間・課外時間":
+  st.write("🍵現在は休み時間または放課後です。ゆっくりしてください！")
 
 #自動でサイトをリフレッシュ
 time.sleep(10)
