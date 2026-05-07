@@ -114,10 +114,16 @@ if current_period in const.end_times:
     remaining = end_time - now_now
     if remaining.total_seconds() > 0:
       mins,secs = divmod(int(remaining.total_seconds()), 60)
-      countdown_placeholder.metric(
-        label=f"{current_period}終了まで",
-        value=f"{mins}分{secs}秒"
-      )
+      if "前" in current_period:
+        countdown_placeholder.metric(
+         label=f"{current_period}終了まで",
+         value=f"{mins + 1}分{secs}秒"
+        )
+      else:
+        countdown_placeholder.metric(
+         label=f"{current_period}終了まで",
+         value=f"{mins}分{secs}秒"
+        )
       time.sleep(1)
     else:
       countdown_placeholder.write(f"✅{current_period}が終了しました！")
